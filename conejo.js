@@ -58,18 +58,18 @@ var jugar = {
 	},
 	
 	update: function(){ 
-	x=juego.input.mousePointer.x;
-	y=juego.input.mousePointer.y;
-		if(flechaderecha.isDown ||(juego.input.mousePointer.isDown && x>75&& x<150 && (Math.abs(y-604)<(x-75)))){
+	x=juego.input.pointer1.x;
+	y=juego.input.pointer1.y;
+		if(flechaderecha.isDown ||(juego.input.pointer1.isDown && x>75&& x<150 && (Math.abs(y-604)<(x-75)))){
 			this.caminader();
 			personaje.animations.play("righta");
-		}else if(flechaizquierda.isDown ||(juego.input.mousePointer.isDown && x<75 && x>0&& (-Math.abs(y-604)>(x-75)))){
+		}else if(flechaizquierda.isDown ||(juego.input.pointer1.isDown && x<75 && x>0&& (-Math.abs(y-604)>(x-75)))){
 			this.caminaizq();
 			personaje.animations.play("lefta");
-		}else if(flechaarriba.isDown ||(juego.input.mousePointer.isDown && y<604&& y>529 )){
+		}else if(flechaarriba.isDown ||(juego.input.pointer1.isDown && y<604&& y>529 )){
 			this.arriba();
 			personaje.animations.play("upa");	
-		}else if(flechaabajo.isDown ||(juego.input.mousePointer.isDown && y>604&& y<679 )){
+		}else if(flechaabajo.isDown ||(juego.input.pointer1.isDown && y>604&& y<679 )){
 			this.abajo();
 			personaje.animations.play("downa");	
 		}else{
