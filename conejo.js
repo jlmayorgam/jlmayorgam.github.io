@@ -66,10 +66,10 @@ var jugar = {
 		}else if(flechaizquierda.isDown ||(juego.input.pointer1.isDown && x<75 && x>0&& (-Math.abs(y-604)>(x-75)))){
 			this.caminaizq();
 			personaje.animations.play("lefta");
-		}else if(flechaarriba.isDown ||(juego.input.pointer1.isDown && y<604&& y>529 )){
+		}else if(flechaarriba.isDown ||(juego.input.pointer1.isDown && y<604&& y>529&& x>0&& x<150 )){
 			this.arriba();
 			personaje.animations.play("upa");	
-		}else if(flechaabajo.isDown ||(juego.input.pointer1.isDown && y>604&& y<679 )){
+		}else if(flechaabajo.isDown ||(juego.input.pointer1.isDown && y>604&& y<679&& x>0&& x<150 )){
 			this.abajo();
 			personaje.animations.play("downa");	
 		}else{
