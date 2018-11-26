@@ -1,4 +1,4 @@
-// Ejemplo de una animación controlada utilizando la librería externa Phaser
+﻿// Ejemplo de una animación controlada utilizando la librería externa Phaser
 //  realizado por el profesor Carlos Delgado para el curso Gráfica Interactiva de la Universidad Nacional de Colombia
 
 // El primer paso es crear un nuevo objeto "Phaser.Game" y definir su tamaño
