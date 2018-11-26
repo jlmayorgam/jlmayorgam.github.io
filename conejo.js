@@ -39,7 +39,6 @@ var jugar = {
 		personaje.animations.add("lefta", [9, 10, 11], 10, true);
 		personaje.animations.add("righta", [3, 4, 5], 10, true);
 		joystick = juego.add.image(0,679, "dpad");
-		joystick.scale.setTo(0.5,0.5);
 		joystick.anchor.setTo(0,1);
 		
 	
@@ -60,16 +59,16 @@ var jugar = {
 	update: function(){ 
 	x=juego.input.pointer1.x;
 	y=juego.input.pointer1.y;
-		if(flechaderecha.isDown ||(juego.input.pointer1.isDown && x>75&& x<150 && (Math.abs(y-604)<(x-75)))){
+		if(flechaderecha.isDown ||(juego.input.pointer1.isDown && x>150&& x<300 && (Math.abs(y-529)<(x-150)))){
 			this.caminader();
 			personaje.animations.play("righta");
-		}else if(flechaizquierda.isDown ||(juego.input.pointer1.isDown && x<75 && x>0&& (-Math.abs(y-604)>(x-75)))){
+		}else if(flechaizquierda.isDown ||(juego.input.pointer1.isDown && x<150 && x>0&& (-Math.abs(y-529)>(x-150)))){
 			this.caminaizq();
 			personaje.animations.play("lefta");
-		}else if(flechaarriba.isDown ||(juego.input.pointer1.isDown && y<604&& y>529&& x>0&& x<150 )){
+		}else if(flechaarriba.isDown ||(juego.input.pointer1.isDown && y<529&& y>379&& x>0&& x<300 )){
 			this.arriba();
 			personaje.animations.play("upa");	
-		}else if(flechaabajo.isDown ||(juego.input.pointer1.isDown && y>604&& y<679&& x>0&& x<150 )){
+		}else if(flechaabajo.isDown ||(juego.input.pointer1.isDown && y>529&& y<679&& x>0&& x<300 )){
 			this.abajo();
 			personaje.animations.play("downa");	
 		}else{
