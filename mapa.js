@@ -4,8 +4,8 @@
 // El primer paso es crear un nuevo objeto "Phaser.Game" y definir su tamaño
 
 // se declaran todas las variables
-var width = 480;
-var height = 360;
+var width = 960;
+var height =720;
 var ratio;
 var juego = new Phaser.Game(width, height, Phaser.CANVAS, "consola");
 
@@ -23,6 +23,7 @@ var flechaabajo;
 var pad;
 var joystick;
 var jsize=0.3;
+var wsize=2;
 var circulo;
 var iglesia
 var plaza;
@@ -50,7 +51,7 @@ var jugar = {
 	create: function() { // pone en el canvas los elemntos que se quieren mostrar y que previamente se cargaron en load.
 	
 		fondojuego = juego.add.image(0, 0, "fondo");		
-		fondojuego.scale.setTo(2,2);
+		fondojuego.scale.setTo(width*wsize/fondojuego.width);
 		fondojuego.anchor.setTo(0);
 		
 		aviso = juego.add.image(50,50, "sign");
@@ -64,22 +65,22 @@ var jugar = {
 		
 		}
 		
-		// iglesia  730 630
-		iglesia = juego.add.button(760,630, "boton1",openIglesia, this);
-		iglesia.scale.setTo(0.08);
-		iglesia.anchor.setTo(0,1); 
+		// iglesia  1100 815
+		iglesia = juego.add.button(width*1.1,width*0.815, "boton1",openIglesia, this);
+		iglesia.scale.setTo(width*0.1/iglesia.width);
+		iglesia.anchor.setTo(0.5); 
 		iglesia.alpha = 0.5;
 		iglesia.inputEnabled = false;
-		//plaza 660 580
-		plaza = juego.add.button(660,580, "boton2",openPlaza, this);
-		plaza.scale.setTo(0.08);
+		//plaza 880 800
+		plaza = juego.add.button(width*0.88,width*0.8, "boton2",openPlaza, this);
+		plaza.scale.setTo(width*0.1/plaza.width);
 		plaza.anchor.setTo(0.5); 
 		plaza.alpha = 0.5;
 		plaza.inputEnabled = false;
 		
 		
 		personaje = juego.add.sprite(xp, yp, "caminante");
-		personaje.scale.setTo(2,2);
+		personaje.scale.setTo(width*0.1/personaje.width);
 		personaje.anchor.setTo(0.5,0.8);  // centra las coordenadas del objeto 	
 		personaje.animations.add("upa", [0, 1, 2], 10, true);  // se crea la animación, orden de los pasos, velocidad 
 		personaje.animations.add("downa", [6, 7, 8], 10, true);
@@ -91,7 +92,7 @@ var jugar = {
 		
 		
 	//fija los limites del mundo en el que el personaje se mueve
-	    juego.world.setBounds(0, 0, 1480, 1358);
+	    juego.world.setBounds(0, 0, width*wsize, height*wsize);
 	// inicia el sistema de fisica del juego que permite la colision entre objetos.                                     
 		juego.physics.startSystem(Phaser.Physics.ARCADE);						
   	//habilita al jugador las colisiones (entre otras funciones que no se estan usando)
@@ -165,13 +166,13 @@ var jugar = {
 			personaje.position.x += 5;       // mueve la animación hacia la derecha
      },
 	caminaizq: function(){  
-			personaje.position.x -= 3;			
+			personaje.position.x -= 5;			
      },
 	 arriba: function(){
-			personaje.position.y -= 3;						                                                    
+			personaje.position.y -= 5;						                                                    
 	 },
 	 abajo: function(){
-			personaje.position.y += 3;			                                                    
+			personaje.position.y += 5;			                                                    
 	 },
 	 
 }
@@ -199,15 +200,15 @@ var iglesia={
 		
 		boton1 = juego.add.button(width, height/2, "button", next, this);
 		boton1.anchor.setTo(1,0.5);
-		boton1.scale.setTo(0.1);	
+		boton1.scale.setTo(width*0.1/boton1.width);	
 		
 		boton2 = juego.add.button(0, height/2, "button", prev, this);
 		boton2.anchor.setTo(1,0.5);
-		boton2.scale.setTo(-0.1,0.1);
+		boton2.scale.setTo(-width*0.1/boton2.width , width*0.1/boton2.width);
 		
-		boton2 = juego.add.button(width, 0, "buttonx", close, this);
-		boton2.anchor.setTo(1,0);
-		boton2.scale.setTo(0.1,0.1);		
+		boton3 = juego.add.button(width, 0, "buttonx", close, this);
+		boton3.anchor.setTo(1,0);
+		boton3.scale.setTo(width*0.05/boton3.width);		
 		
 		this.resize(ratio);
 		}
@@ -249,17 +250,18 @@ var plaza={
 		
 		//fondojuego.visible=false;
 		
+				
 		boton1 = juego.add.button(width, height/2, "button", next, this);
 		boton1.anchor.setTo(1,0.5);
-		boton1.scale.setTo(0.1);	
+		boton1.scale.setTo(width*0.1/boton1.width);	
 		
 		boton2 = juego.add.button(0, height/2, "button", prev, this);
 		boton2.anchor.setTo(1,0.5);
-		boton2.scale.setTo(-0.1,0.1);
+		boton2.scale.setTo(-width*0.1/boton2.width , width*0.1/boton2.width);
 		
-		boton2 = juego.add.button(width, 0, "buttonx", close, this);
-		boton2.anchor.setTo(1,0);
-		boton2.scale.setTo(0.1,0.1);		
+		boton3 = juego.add.button(width, 0, "buttonx", close, this);
+		boton3.anchor.setTo(1,0);
+		boton3.scale.setTo(width*0.05/boton3.width);			
 		
 		this.resize(ratio);
 		}
