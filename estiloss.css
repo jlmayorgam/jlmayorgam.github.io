@@ -1,0 +1,294 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* fuentes utilizadas */
+@font-face {
+    font-family: Roboto-regular; /* nombre de la fuente*/
+	src: url(roboto/Roboto-Regular.ttf); /*url del archivo TTF u OTF*/
+    }
+@font-face {
+    font-family: Roboto-Light;
+	src: url(roboto/Roboto-Light.ttf);
+    }
+@font-face {
+    font-family:legacy;
+	src:url(Amanda/amandaa.ttf);
+    }
+/*atributos generales */
+*{
+	font-family: Roboto-Light;
+	text-decoration:none;	/* quita cualquier decorado del texto (subrayado, negrita, cursiva, etc) */
+
+	}
+p{
+	font-size:16px;
+	color:#000;
+	padding:5%;
+	margin:0px;
+	text-align:justify;
+	}
+body {
+	background-color:#FFF;
+	background-repeat: repeat-x;
+	
+}
+
+.index ul{
+	margin:auto;
+	}
+h1{	
+	font-family: Roboto-Light;
+	text-align:left;
+	font-size:30px;
+	margin:0px;
+	pading:0px;
+	}
+h2{	
+	font-family: Roboto-Regular;
+	text-align:left;
+	margin:0px;
+	pading:0px;
+	}
+img{margin:auto;
+display:block;
+max-width:100%;
+max-height:100%;}
+ul{list-style-type:none;}
+/*Encabezado*/
+
+.index li {
+	margin: 0px 0px 0px 20px;
+	}
+.index ul{
+	margin:20px;
+	}
+
+.h1{ /*para titulos*/
+	font-family: legacy;
+	font-size:80px;
+	}
+.title a{
+	position: relative;
+		}
+
+
+
+/*header*/
+.header{ /* da estilo al encabezado además de un fondo*/
+		position:relative;
+		z-index:1;
+		height:inherit;
+		
+		width:100%;
+		
+		background-image:url(imagenes/panoramica.png);
+		background-repeat:no-repeat;
+		}
+.header_top{ /* da estilo al menu secundario*/
+			float: right;			
+			}
+.header_top a{background-color:#000;
+			color:#fff;
+			opacity:0.7;
+			
+			}
+.header_top a:hover{
+	background-color:transparent;
+			color:#fff;
+			opacity:1;			
+			}
+.title{ /* atributos adicionales del titulo principal de la página */
+	color:#FFF;
+	margin:0px 0px 0px 20px;	
+	
+		}
+/* list style*/
+
+
+/*buton style*/
+.button a{
+	padding:0px 30px 0px 0px;
+	margin:auto;
+	text-align:center;
+	
+	}
+.button_selected {	/* estilo de boton cuando el boton es el mismo de la página*/	
+	background-color:#390 !important;
+	}
+.button {	/* atributos de un boton del menu principal*/	
+	
+	z-index:1;	/* ayuda a que se muestre encima del contenido cuando es desplegable */
+	padding:0px 0px 0px 0px; 
+	margin:0px; 
+	font-size:24px;
+	height:30px;
+
+	color:#FFF;
+	float:none;
+	vertical-align:baseline;
+	display:inline-block;
+	
+}
+.button a,.button_selected a{	
+	text-decoration:none;
+	display:inline-block;	
+	margin:0px;
+	padding:0px;
+	width:100%;	
+	color:#FFF;
+	}
+
+.button:hover { /* estilos cuando el puntero esta sobre el boton (modifica atributos)*/
+	text-shadow: 1px 1px #000000; /*sombreado*/
+	background-color: #390;
+}
+
+.nav{ /* lista que contiene a los botones. ayuda a que sea desplegable a partir de un boton y de da el color de fondo*/
+	padding:0px;	
+	margin: 0px -1px 0px -1px; 
+	width:100%;
+	display: block;
+	
+	height:inherit;
+	background-color: #030;	
+	
+		}
+
+.aux{ /* rectangulo que ayuda esteticamente al menu */
+	height:10px;
+background-color:#390;
+width:100%;
+
+			}
+.menu {	/* contiene los botones ayuda a que los elementos siguientes no se muevan al desplegar el menu	*/
+	border: solid; 	
+	border-width:1px 0px 0px 0px;
+	
+	border-color:#000;
+		
+	margin:auto;
+	height:auto;
+	width:100%;			
+	position:relative;
+	text-align:center;
+	display:block;
+}
+/* cuerpo*/
+.main{ /* estilo que contiene todo el contenido de la pagina*/
+	margin:auto;
+	padding:10px;
+	max-width:2200px;
+	width:90%;
+	border:solid;
+	border-color:#666;
+	border-top:hidden;
+	border-width:1px;
+	
+	}
+
+.content{ /* estilo del panel que contiene la información*/
+	width:70%;
+		
+	padding: 0px 0px 0px 0px;
+	margin:0px;
+	background-color:#CFC;
+	float:left;
+	position:absolute:
+	z-index:-1;
+	}
+.index{ /* estilo del indice*/
+	width:30%;	
+
+	padding: 0px 0px 0px 0px;
+	margin:0px;
+	background-color:#903;
+	float:right;
+	position:absolute:
+
+	z-index:1;
+		}
+
+
+.cuerpo{
+	width:100%;	
+	margin:auto; /*30px 0px 0px 0px;*/		
+	z-index:-1; /* permite que el menu desplegable se muestre encima */
+	display:inline-block;
+	}
+
+.footer{width:100%; /* estilo del pie de página */
+		background-color:#030;
+		z-index:-1;
+		position:relative;		
+		}
+
+@media only screen and (max-width: 780px) { /*cambia atributos cuando la ventana tiene menos de 780px de ancho*/ 
+		 .title{
+	font-size: 50px;
+	}
+	.menu{	
+	font-size:18px;
+	padding:auto;
+	
+	}
+	.button{
+		display:none; /* hace que no se muestren los botones*/
+		width:160px;
+		height:30px;
+		background-color: #030;	
+		
+		
+		}
+	.button_selected{
+		width:160;
+		display:block}
+	.nav{
+		width:0px;
+		left:30px;
+		position:absolute !important;
+		
+			}
+	.menu{
+		border: solid; 
+		border-width: 1px;
+		border-color:#000;
+		float:none;
+		margin:0px 0px 0px 0px;
+		background-color: #030;
+		background-image: url(imagenes/menu.png); /* usa un simbolo de menu */
+		background-repeat:no-repeat;
+		background-size:30px 30px;
+		width:30px;
+		height:30px;
+		
+		
+		}
+
+	.menu:hover>.nav .button { /* cuando se selecciona con el puntero el menu cambia los atributos de los botones*/
+		display:block; /* hace visible los botones */
+		float:left;/* hace que se muestren verticalmente*/
+		}
+		}	
+
+@media only screen and (max-width: 480px) {/* cambia el estilo de algunos elementos para visualizarlos en pantallas pequeñas*/
+    .title{
+	font-size: 30px;
+	}
+	.button,.aux{/* no muestra el boton seleccionado ni el panel auxiliar*/
+		display:none;		
+		}
+	.nav{/* ayuda a que se muestre el menu con un corrimiento de 30px*/
+			width:0px;		
+			}
+	.menu{		/*le da un tamaño al boton de menu*/
+		width:30px;
+		height:30px;
+		
+		
+		}
+	.index{width:100%;/* cambia la proporcion de las secciones para mostrar mejor la pagina en pantallas pequeñas*/
+		}
+	.content{width:100%;
+		}
+
+}

@@ -1,17 +1,46 @@
-<!doctype html>
-<!-- Ejemplo de una animación controlada utilizando la librería externa Phaser
-    - realizado por el profesor Carlos Delgado para el curso Gráfica Interactiva de la Universidad Nacional de Colombia-->
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>juego</title>
-	<script src="phaser.js"></script>
-	<script src="conejo.js"></script>
-	<link href="estilos.css" rel="stylesheet" type="text/css">
-	<meta name="viewport" content="width=device-width; initial-scale=1.0">
+<meta charset="UTF-8"><!--permite la tipografia del idioma español-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actividades</title> <!-- titulo mostrado en la ventana del navegador-->
+<link href="estiloss.css" rel="stylesheet" type="text/css"> <!-- utiliza los estilos de una hoja de estilos (css)-->
 </head>
-
+<!--La estructura de las paginas son iguales en contenido en la parte del encabezado (header) y pie de página(footer)
+%el contenido cambia segun lo que la pagina quiere mostrar-->
 <body>
-	<div id="consola" class= "juegoPhaserH" ></div><!-- el id "consola" es el nombre del juego en la primera línea del archivo conejo.js -->
+<main class="main">
+    	<header class="header"> 							<!--encabezado-->
+        	<nav class="header_top">						<!--menú superior para enlaces que no son principales (creditos,mapa del sitio)-->
+    			<a href="creditos.html" >Créditos</a> |
+             <a href="mapa.html" >Mapa del sitio</a>    				
+  			</nav>
+        	<div><a class="title" href="index.html"><h1 class="h1">Tibirita</h1></a></div>			<!--Título de la página-->
+    
+    		<nav class="menu">    			<!--menu: contiene las 4 páginas principales en los que se puede navergar el sitio-->		
+        		<ul class=nav> 				<!--lista sin numerar -->                      
+            		<li class="button"><a href="1_historia.html" target="_self">Historia</a></li><!--botón que lleva a la página en la misma ventana-->  
+            		<li class="button"><a href="2_espacios.html" target="_self">Espacios</a></li>
+            		<li class="button"><a href="3_habitantes.html" target="_self">Habitantes</a></li>
+            		<li class="button"><a href="4_actividades.html" target="_self">Actividades</a></li>   
+                    <li class="button"><a href="mapa_interactivo.html" target="_new">Mapa</a></li>       	
+             	</ul> 
+               
+    		</nav>
+         <!--    <div class="aux"></div>  bloque para dar un detalle estético al menu activo en las demás paginas-->
+        </header>
+           
+    	<section class="cuerpo" ><img src="imagenes/inicio.png"> <!--imagen de bienvenida-->
+     		
+    	</section>
+        
+         <footer class="footer"><!--pie de página: contiene un meno secundario y el nombre del autor-->
+        <ul>
+        	 <li>José Luis Mayorga Moreno &copy </li>
+             <li><a href="creditos.html">Créditos</a></li>
+             <li><a href="mapa.html">Mapa del sitio</a></li>
+        </ul>
+        </footer>
+    </main>
+				
 </body>
 </html>

@@ -28,8 +28,9 @@
 	     width: 320px;
 		 } 
 		.juegoPhaserH {	
+		 max-width:480px;
 		 box-shadow: 10px 15px 15px 0 rgba(0, 0, 0, 0.4);
-	     margin: -10px;
+	     
 		 } 
 
 @media only screen and (min-width: 720px) {  /* Si la pantalla es mayor a 720px muestra el texto a la derecha */
