@@ -22,6 +22,7 @@ var flechaarriba;
 var flechaabajo;
 var pad;
 var joystick;
+var jsize=0.3;
 var circulo;
 var iglesia
 var plaza;
@@ -48,17 +49,19 @@ var jugar = {
 	
 	create: function() { // pone en el canvas los elemntos que se quieren mostrar y que previamente se cargaron en load.
 	
-		fondojuego = juego.add.image(740, 679, "fondo");		
+		fondojuego = juego.add.image(0, 0, "fondo");		
 		fondojuego.scale.setTo(2,2);
-		fondojuego.anchor.setTo(0.5);
+		fondojuego.anchor.setTo(0);
 		
 		aviso = juego.add.image(50,50, "sign");
 		
-		if(juego.device.touch){
-		joystick = juego.add.image(0,679, "dpad");
+		if(juego.device.touch || juego.device.android || juego.device.iPhone){
+		joystick = juego.add.image(0,height, "dpad");
 		joystick.anchor.setTo(0,1);
+		joystick.scale.setTo(width*jsize/joystick.width);
 		joystick.alpha=0.5;
 		joystick.fixedToCamera = true;
+		
 		}
 		
 		// iglesia  730 630
@@ -112,16 +115,16 @@ var jugar = {
 	yp = personaje.position.y;
 	juego.camera.x = xp;	
 	//hace que el personaje s emueva de acuerdo a las entradas
-		if(flechaderecha.isDown ||(juego.input.pointer1.isDown && x>150&& x<300 && (Math.abs(y-529)<(x-150)))){
+		if(flechaderecha.isDown ||(juego.input.pointer1.isDown && x>width*jsize/2 && x<width*jsize && (Math.abs(y-height+height*jsize/2)<(x-width*jsize/2)))){
 			this.caminader(); //mueve el personaje a la derecha
 			personaje.animations.play("righta"); // animacion del personaje cuando camina a la derecha (y asi mismo para el resto de entradas)
-		}else if(flechaizquierda.isDown ||(juego.input.pointer1.isDown && x<150 && x>0&& (-Math.abs(y-529)>(x-150)))){
+		}else if(flechaizquierda.isDown ||(juego.input.pointer1.isDown && x<width*jsize/2 && x>0 && (-Math.abs(y-height+height*jsize/2)>(x-width*jsize/2)))){
 			this.caminaizq();
 			personaje.animations.play("lefta");
-		}else if(flechaarriba.isDown ||(juego.input.pointer1.isDown && y<529&& y>379&& x>0&& x<300 )){
+		}else if(flechaarriba.isDown ||(juego.input.pointer1.isDown && y<height-height*jsize/2 && y>height-height*jsize && x>0&& x<width*jsize )){
 			this.arriba();
 			personaje.animations.play("upa");
-		}else if(flechaabajo.isDown ||(juego.input.pointer1.isDown && y>529&& y<679&& x>0&& x<300 )){
+		}else if(flechaabajo.isDown ||(juego.input.pointer1.isDown && y>height-height*jsize/2&& y<height&& x>0&& x<width*jsize )){
 			this.abajo();
 			personaje.animations.play("downa");	
 		}else{
