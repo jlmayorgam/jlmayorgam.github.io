@@ -7,7 +7,6 @@
 var width = 960;
 var height =720;
 var ratio;
-var juego = new Phaser.Game(width, height, Phaser.CANVAS, "consola");
 
 var fondojuego;
 var personaje;
@@ -15,6 +14,7 @@ var boton1;
 var boton2;
 var boton3;
 var texto;
+var letrero
 
 var flechaderecha;
 var flechaizquierda;
@@ -50,6 +50,7 @@ var jugar = {
 		juego.load.image("boton2", "imagenes/p1.jpg",1200,800);
 		juego.load.image("boton3", "imagenes/r1.jpg",1200,800);
 		juego.load.image("boton4", "imagenes/f1.jpg",1200,800);
+		juego.load.image("letrero", "imagenes/sign.png",740,697);
 			
 	},
 	
@@ -58,6 +59,13 @@ var jugar = {
 		fondojuego = juego.add.image(0, 0, "fondo");		
 		fondojuego.scale.setTo(width*wsize/fondojuego.width);
 		fondojuego.anchor.setTo(0);
+		
+		letrero = juego.add.image(30,30, "letrero");
+		letrero.scale.setTo(1.6);
+		//u2190-u2193
+		var text="Use las teclas \u2190 \u2191 \u2192 \u2193 o el \n control  táctil para mover el personaje. situalo sobre una imágen, clickéala/tócala y mira \n las Fotos";
+		var style = {font: "24px Arial", fill: "#000000",wordWrap: true, wordWrapWidth: letrero.width, align: "center" };
+		letreroT =juego.add.text(50,50, text, style);
 		
 		if(juego.device.touch || juego.device.android || juego.device.iPhone){
 		joystick = juego.add.image(0,height, "dpad");
@@ -152,21 +160,26 @@ var jugar = {
 	// reconoce cuando el personaje esta sobre un boton.		
 		if(personaje.overlap(iglesia)){
 			this.enable(iglesia); // activa el boton para ver la información
+			iglesia.input.useHandCursor = true;
+			
 		}else{
 			this.disable(iglesia); //desactiva el boton si no está sobre él			
 				}
 		if(personaje.overlap(plaza)){
 			this.enable(plaza); // activa el boton para ver la información
+			plaza.input.useHandCursor = true;
 		}else{
 			this.disable(plaza); //desactiva el boton si no está sobre él			
 				}
 		if(personaje.overlap(rural)){
 			this.enable(rural); // activa el boton para ver la información
+			rural.input.useHandCursor = true;
 		}else{
 			this.disable(rural); //desactiva el boton si no está sobre él			
 				}
 		if(personaje.overlap(ferias)){
 			this.enable(ferias); // activa el boton para ver la información
+			ferias.input.useHandCursor = true;
 		}else{
 			this.disable(ferias); //desactiva el boton si no está sobre él			
 				}
@@ -178,6 +191,8 @@ var jugar = {
 	enable: function(button1){
 		    button1.alpha=1; //sin transparencia
 			button1.inputEnabled = true; //habilita la funcion del botón
+			
+			
 			
 		},
 	disable: function(button1){
@@ -229,6 +244,5 @@ function openFerias(){
 			k="f"; //letra clave para acceder a las imágenes
 		juego.state.start("galeria");
 	}
-juego.state.add("activo", jugar);
-juego.state.start("activo");
+
 
