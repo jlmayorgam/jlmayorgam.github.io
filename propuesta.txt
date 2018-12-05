@@ -1,4 +1,4 @@
-﻿Para este taller el cual consiste aplicar los conocimientos aprendidos de JavaScript usando la librería de phaser se hizo un mapa interactivo.
+﻿Para este segundo ejercicio el cual consiste aplicar los conocimientos aprendidos de JavaScript usando la librería de phaser se hizo un mapa interactivo.
 Descripción del mapa:
 Es un mapa adaptado de Google maps y con elementos graficos que recuerdan los RPG de 8bits.
  Lo que debe hacer el usuario es mover el personaje que se muestra con las flechas del teclado o si está en un dispositivo táctil presionando el joystick virtual (para el bono 😉).
