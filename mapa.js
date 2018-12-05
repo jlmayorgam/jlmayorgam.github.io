@@ -4,8 +4,8 @@
 // El primer paso es crear un nuevo objeto "Phaser.Game" y definir su tamaño
 
 // se declaran todas las variables
-var width = 1000;
-var height =1000;
+var width = 960;
+var height =720;
 var ratio;
 var juego = new Phaser.Game(width, height, Phaser.CANVAS, "consola");
 
@@ -98,14 +98,14 @@ var jugar = {
 		ferias.alpha = 0.5;
 		ferias.inputEnabled = false;
 		
-		
-		personaje = juego.add.sprite(xp, yp, "caminante");
-		personaje.scale.setTo(width*0.15/personaje.width);
+		// se dibuja y se muestra 
+		personaje = juego.add.sprite(xp, yp, "caminante"); //crea el sprite del personaje
+		personaje.scale.setTo(width*0.15/personaje.width ); //lo escala y le da el tamaño adecuado
 		personaje.anchor.setTo(0.5,0.8);  // centra las coordenadas del objeto 	
-		personaje.animations.add("upa", [0, 1, 2], 10, true);  // se crea la animación, orden de los pasos, velocidad 
-		personaje.animations.add("downa", [6, 7, 8], 10, true);
-		personaje.animations.add("lefta", [9, 10, 11], 10, true);
-		personaje.animations.add("righta", [3, 4, 5], 10, true);
+		personaje.animations.add("upa", [0, 1, 2], 10, true);  // se crea la animación, orden de los pasos, velocidad para arriba
+		personaje.animations.add("downa", [6, 7, 8], 10, true); // para abajo
+		personaje.animations.add("lefta", [9, 10, 11], 10, true); // izquierda
+		personaje.animations.add("righta", [3, 4, 5], 10, true);	// y derecha
 		
 		juego.camera.follow(personaje);
 			
@@ -135,7 +135,7 @@ var jugar = {
 	xp = personaje.position.x;
 	yp = personaje.position.y;
 	juego.camera.x = xp;	
-	//hace que el personaje s emueva de acuerdo a las entradas
+	//hace que el personaje se muevan de acuerdo a las entradas (permite entrada táctil)
 		if(flechaderecha.isDown ||(juego.input.pointer1.isDown && x>width*jsize/2 && x<width*jsize && (Math.abs(y-height+height*jsize/2)<(x-width*jsize/2)))){
 			this.caminader(); //mueve el personaje a la derecha
 			personaje.animations.play("righta"); // animacion del personaje cuando camina a la derecha (y asi mismo para el resto de entradas)
@@ -180,29 +180,30 @@ var jugar = {
 	enable: function(button1){
 		    button1.alpha=1; //sin transparencia
 			button1.inputEnabled = true; //habilita la funcion del botón
-			button1.interaction = true;
+			
 		},
 	disable: function(button1){
 		    button1.alpha=0.5; //le da cierta transparencia al botón
 			button1.inputEnabled = false; //deshabilta la funcion dle botón (no es clickeable)
-			button1.interaction = false;
+			
 		},
 	
-	render: function(){
-			juego.debug.inputInfo(32,32);
-		},
-		//funciones que permiten mover al personaje
+//	render: function(){
+//			juego.debug.inputInfo(32,32); //opcion para ver las propiedades del puntero mientras se ejecuta el juego util para hallar coordenadas para situar objetos.
+//		},
+
+//funciones que permiten mover al personaje
 	caminader: function(){  
 			personaje.position.x += 5;       // mueve la animación hacia la derecha
      },
 	caminaizq: function(){  
-			personaje.position.x -= 5;			
+			personaje.position.x -= 5;	// mueve la animación hacia la izquierda			
      },
 	 arriba: function(){
-			personaje.position.y -= 5;						                                                    
+			personaje.position.y -= 5; // mueve la animación hacia arriba						                                                    
 	 },
 	 abajo: function(){
-			personaje.position.y += 5;			                                                    
+			personaje.position.y += 5;// mueve la animación hacia abajo			                                                    
 	 },
 	 
 }
@@ -300,24 +301,24 @@ function close(){
 	
 function openIglesia(){	
 		//juego.state.shutDown;
-		size=4;
-		k="i";
+		size=4; //indica el numero de fotos en la galeria
+		k="i";  //letra clave para acceder a las imágenes
 		juego.state.start("galeria");	
 	 }
 function openPlaza(){	
 		//juego.state.shutDown;
-		size=3;
-		k="p";
+		size=3; //indica el numero de fotos en la galeria
+		k="p"; //letra clave para acceder a las imágenes
 		juego.state.start("galeria");	
 	}
 function openRural(){
-			size=4;
-			k="r";
+			size=4; //indica el numero de fotos en la galeria
+			k="r"; //letra clave para acceder a las imágenes
 		juego.state.start("galeria");
 	}
 function openFerias(){
-			size=3;
-			k="f";
+			size=3; //indica el numero de fotos en la galeria
+			k="f"; //letra clave para acceder a las imágenes
 		juego.state.start("galeria");
 	}
 juego.state.add("galeria", galeria);
