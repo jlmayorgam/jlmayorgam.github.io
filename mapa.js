@@ -4,8 +4,8 @@
 // El primer paso es crear un nuevo objeto "Phaser.Game" y definir su tamaño
 
 // se declaran todas las variables
-var width = 960;
-var height =720;
+var width = 1000;
+var height =1000;
 var ratio;
 var juego = new Phaser.Game(width, height, Phaser.CANVAS, "consola");
 
@@ -27,9 +27,12 @@ var wsize=2;
 var circulo;
 var iglesia
 var plaza;
+var rural;
+var ferias;
 var x;
 var y;
 var i = 1;
+var k;
 var xp = width/2;
 var yp = height/2;
 var tween;
@@ -45,6 +48,8 @@ var jugar = {
 		juego.load.image("sign", "imagenes/sign.png",244,120);
 		juego.load.image("boton1", "imagenes/i1.jpg",740,697);
 		juego.load.image("boton2", "imagenes/p1.jpg",1200,800);
+		juego.load.image("boton3", "imagenes/r1.jpg",1200,800);
+		juego.load.image("boton4", "imagenes/f1.jpg",1200,800);
 			
 	},
 	
@@ -66,21 +71,36 @@ var jugar = {
 		}
 		
 		// iglesia  1100 815
-		iglesia = juego.add.button(width*1.1,width*0.815, "boton1",openIglesia, this);
+		iglesia = juego.add.button(width*1.12,width*0.815, "boton1",openIglesia, this);
 		iglesia.scale.setTo(width*0.1/iglesia.width);
 		iglesia.anchor.setTo(0.5); 
 		iglesia.alpha = 0.5;
 		iglesia.inputEnabled = false;
+		
 		//plaza 880 800
 		plaza = juego.add.button(width*0.88,width*0.8, "boton2",openPlaza, this);
-		plaza.scale.setTo(width*0.1/plaza.width);
+		plaza.scale.setTo(width*0.15/plaza.width);
 		plaza.anchor.setTo(0.5); 
 		plaza.alpha = 0.5;
 		plaza.inputEnabled = false;
 		
+		//rural 1330 440
+		rural = juego.add.button(width*1.33,width*0.44, "boton3",openRural, this);
+		rural.scale.setTo(width*0.15/rural.width);
+		rural.anchor.setTo(0.5); 
+		rural.alpha = 0.5;
+		rural.inputEnabled = false;
+		
+		//fiestas 530 1240
+		ferias = juego.add.button(width*0.53,width*1.24, "boton4",openFerias, this);
+		ferias.scale.setTo(width*0.15/ferias.width);
+		ferias.anchor.setTo(0.5); 
+		ferias.alpha = 0.5;
+		ferias.inputEnabled = false;
+		
 		
 		personaje = juego.add.sprite(xp, yp, "caminante");
-		personaje.scale.setTo(width*0.1/personaje.width);
+		personaje.scale.setTo(width*0.15/personaje.width);
 		personaje.anchor.setTo(0.5,0.8);  // centra las coordenadas del objeto 	
 		personaje.animations.add("upa", [0, 1, 2], 10, true);  // se crea la animación, orden de los pasos, velocidad 
 		personaje.animations.add("downa", [6, 7, 8], 10, true);
@@ -142,6 +162,16 @@ var jugar = {
 		}else{
 			this.disable(plaza); //desactiva el boton si no está sobre él			
 				}
+		if(personaje.overlap(rural)){
+			this.enable(rural); // activa el boton para ver la información
+		}else{
+			this.disable(rural); //desactiva el boton si no está sobre él			
+				}
+		if(personaje.overlap(ferias)){
+			this.enable(ferias); // activa el boton para ver la información
+		}else{
+			this.disable(ferias); //desactiva el boton si no está sobre él			
+				}
 				
 				
 		
@@ -177,66 +207,18 @@ var jugar = {
 	 
 }
 // estado del juego cuando se clickea un botón 
-var iglesia={
-	preload: function() {
-		size=4;
-		this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;         // Escala la imagen al reducir el tamaño de la ventana
-		juego.load.image("fondo1", "imagenes/i1.jpg");
-		juego.load.image("fondo2",  "imagenes/i2.jpg", 800, 1200);
-		juego.load.image("fondo3",  "imagenes/i3.jpg");
-		juego.load.image("fondo4",  "imagenes/i4.jpg");
-		juego.load.image("button", "imagenes/arrow.png");
-		juego.load.image("buttonx", "imagenes/close-button.png");
-		}, 
-	create: function(){
-		juego.world.setBounds(0, 0, width, height);
-		juego.stage.backgroundColor = '#000000';
-		
-		fondojuego = juego.add.image(juego.world.centerX , juego.world.centerY, "fondo1");
-		fondojuego.anchor.setTo(0.5);
-		ratio= fondojuego.height/fondojuego.width;
-		
-		//fondojuego.visible=false;
-		
-		boton1 = juego.add.button(width, height/2, "button", next, this);
-		boton1.anchor.setTo(1,0.5);
-		boton1.scale.setTo(width*0.1/boton1.width);	
-		
-		boton2 = juego.add.button(0, height/2, "button", prev, this);
-		boton2.anchor.setTo(1,0.5);
-		boton2.scale.setTo(-width*0.1/boton2.width , width*0.1/boton2.width);
-		
-		boton3 = juego.add.button(width, 0, "buttonx", close, this);
-		boton3.anchor.setTo(1,0);
-		boton3.scale.setTo(width*0.05/boton3.width);		
-		
-		this.resize(ratio);
-		}
-		,
-	update: function(){
-		
-		this.resize(ratio);
-			}, 
-	resize: function(ratio){
-		if(ratio<1){
-			fondojuego.width= 0.9*width;
-			fondojuego.height=ratio*0.9*width;
-			fondojuego.anchor.setTo(0.5);
-		}else{
-			fondojuego.height=0.9*height;	
-			fondojuego.width= 0.9*height/ratio;
-		}
-	}
-	
 
-}
-var plaza={
+var galeria={
 	preload: function() {
-		size=3;
+		
 		this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;         // Escala la imagen al reducir el tamaño de la ventana
-		juego.load.image("fondo1", "imagenes/p1.jpg");
-		juego.load.image("fondo2",  "imagenes/p2.jpg");
-		juego.load.image("fondo3",  "imagenes/p3.jpg");
+		var j;
+		var key1,key2;
+		for(j=1;j<=size;j++){
+			key1="fondo"+j;
+			key2= "imagenes/"+k+j+".jpg";
+			juego.load.image(key1, key2);
+						}
 		juego.load.image("button", "imagenes/arrow.png");
 		juego.load.image("buttonx", "imagenes/close-button.png");
 		}, 
@@ -245,9 +227,9 @@ var plaza={
 		juego.stage.backgroundColor = '#000000';
 		
 		fondojuego = juego.add.image(juego.world.centerX , juego.world.centerY, "fondo1");
-		fondojuego.anchor.setTo(0.5);
-		ratio= fondojuego.height/fondojuego.width;
 		
+		ratio= fondojuego.height/fondojuego.width;
+		this.resize(ratio);
 		//fondojuego.visible=false;
 		
 				
@@ -263,14 +245,15 @@ var plaza={
 		boton3.anchor.setTo(1,0);
 		boton3.scale.setTo(width*0.05/boton3.width);			
 		
-		this.resize(ratio);
+		
 		}
 		,
 	update: function(){
 		
-		this.resize(ratio);
+		
 			}, 
 	resize: function(ratio){
+		
 		if(ratio<1){
 			fondojuego.width= 0.8*width;
 			fondojuego.height=ratio*0.8*width;
@@ -278,16 +261,20 @@ var plaza={
 		}else{
 			fondojuego.height=0.8*height;	
 			fondojuego.width= 0.8*height/ratio;
+			fondojuego.anchor.setTo(0.5);
 		}
 	}
 	
 
 }
 function next(){
+	
 	if(i<size){
 		i=i+1;		
 	    keys = "fondo" + i;				
-		fondojuego.loadTexture(keys);		
+		fondojuego.loadTexture(keys);	
+		ratio= fondojuego.height/fondojuego.width;	
+		this.resize(ratio);
 	}else{
 		i=0;
 		next();
@@ -298,7 +285,9 @@ function prev(){
 	if(i>1){
 		i=i-1;		
 	    keys = "fondo" + i;		
-		fondojuego.loadTexture(keys);		
+		fondojuego.loadTexture(keys);	
+		ratio= fondojuego.height/fondojuego.width;	
+		this.resize(ratio);	
 	}else{
 		i=size+1;
 		prev();
@@ -311,14 +300,27 @@ function close(){
 	
 function openIglesia(){	
 		//juego.state.shutDown;
-		juego.state.start("iglesia");	
-		 }
-		 function openPlaza(){	
+		size=4;
+		k="i";
+		juego.state.start("galeria");	
+	 }
+function openPlaza(){	
 		//juego.state.shutDown;
-		juego.state.start("plaza");	
-		 }
-	juego.state.add("iglesia", iglesia);
-	juego.state.add("plaza", plaza);
-	juego.state.add("activo", jugar);
-	juego.state.start("activo");
+		size=3;
+		k="p";
+		juego.state.start("galeria");	
+	}
+function openRural(){
+			size=4;
+			k="r";
+		juego.state.start("galeria");
+	}
+function openFerias(){
+			size=3;
+			k="f";
+		juego.state.start("galeria");
+	}
+juego.state.add("galeria", galeria);
+juego.state.add("activo", jugar);
+juego.state.start("activo");
 
